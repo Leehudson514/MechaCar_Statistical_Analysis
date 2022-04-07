@@ -1,6 +1,6 @@
 # MechaCar_Statistical_Analysis
 ## Overview
-* The purpose of this analysis
+* The purpose of this analysis was to use R to perform a statistical analysis on data that looked at the MechaCar prototype.
 
 ## Linear Regression to Predict MPG
 * Both vehicle length and vehicle ground clearance provided a non-random amount of variance to the mpg values in the dataset. While, vehicle weight,  AWD, and spoiler angle all have p-Values that point to a random amount of variance to mpg values.
