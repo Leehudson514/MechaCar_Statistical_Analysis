@@ -12,3 +12,32 @@ lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AW
 summary(lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AWD, data=mpg_data)) 
 
 # Challenge 2
+# read csv suspension coil data
+coil_data <- read.csv("C:/Users/leehu/Desktop/Berkeley/MechaCar_Statistical_Analysis/Resources/Suspension_coil.csv") 
+
+# summary function to create a total summary data frame (mean, median, variance, and standard deviation of the suspension coil’s PSI column)
+total_summary <- coil_data %>% summarize(Mean_PSI=mean(PSI),
+                                          Median_PSI=median(PSI),
+                                          Var_PSI=var(PSI),
+                                          Std_Dev_PSI=sd(PSI),
+                                          Num_Coil=n(), .groups = 'keep') 
+
+# group by function to create a "lot summary"
+lot_summary <- coil_data  %>% group_by(Manufacturing_Lot) %>% summarize(Mean_PSI=mean(PSI),
+                                                                         Median_PSI=median(PSI),
+                                                                         Var_PSI=var(PSI),
+                                                                         Std_Dev_PSI=sd(PSI),
+                                                                         Num_Coil=n(), .groups = 'keep')
+
+# challenge 3
+# t-test function to determine PSI in all lots
+t.test(coil_data$PSI,mu=1500)
+
+# individual t-test for each lot to determine if PSI for each lot differs
+lot1 <- subset(coil_data, Manufacturing_Lot=="Lot1")
+lot2 <- subset(coil_data, Manufacturing_Lot=="Lot2")
+lot3 <- subset(coil_data, Manufacturing_Lot=="Lot3")
+
+t.test(lot1$PSI,mu=1500)
+t.test(lot2$PSI,mu=1500)
+t.test(lot3$PSI,mu=1500)
